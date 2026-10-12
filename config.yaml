@@ -1,0 +1,55 @@
+# ======================== CÁMARAS ========================
+# Una entrada por cámara. Usa el SUBSTREAM (baja resolución) de cada cámara.
+camaras:
+  - nombre: Webcam
+    zona: Prueba
+    url: "0"
+# ======================== TELEGRAM ========================
+# El token también puede ir en la variable de entorno TELEGRAM_TOKEN (más seguro).
+telegram:
+  token: "TU_TOKEN"
+  chats: ["123456789"]        # personal de guardia, dirección, orientación…
+
+# ======================== RENDIMIENTO ========================
+rendimiento:
+  camaras_por_proceso: 6      # cámaras vigiladas por cada proceso
+  inferencia:
+    en_servidor: auto         # auto = servidor único si el backend es onnx
+    lote_max: 8               # ventanas procesadas a la vez por el modelo
+    cola_max: 200
+
+# ======================== DETECCIÓN ========================
+deteccion:
+  backend: movimiento         # movimiento (solo pruebas) | onnx (modelo real)
+  permitir_detector_de_prueba: false   # true solo para probar con modo_calibracion: false
+  modelo_onnx: modelos/violencia.onnx
+  onnx:
+    frames: 16
+    alto: 112
+    ancho: 112
+    layout: NCTHW
+    clase_violencia: 1
+    media: [0.43216, 0.394666, 0.37645]
+    std: [0.22803, 0.22145, 0.216989]
+  sensibilidad_movimiento: 8.0
+  prefiltro_movimiento: 0.03  # si hay menos movimiento que esto, no se gasta modelo
+  resolucion: [640, 360]      # con >30 cámaras usa [480, 270] para ahorrar memoria
+  umbral: 0.65
+  ventanas_consecutivas: 3
+  fps_analisis: 8
+  ventana_seg: 2.0
+
+# ======================== ALERTAS ========================
+alertas:
+  modo_calibracion: true      # true = graba y registra, NO envía alertas
+  enfriamiento_seg: 90
+  horario: { inicio: "00:00", fin: "23:59", dias: [1, 2, 3, 4, 5, 6, 7] }
+  heartbeat_horas: 12
+
+# ======================== ALMACENAMIENTO ========================
+almacenamiento:
+  carpeta: datos
+  retencion_dias: 7
+  max_gb: 20                  # si se supera, se borran los clips más viejos
+  clip_previo_seg: 5
+  clip_posterior_seg: 5

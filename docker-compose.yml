@@ -1,0 +1,29 @@
+# Antes de arrancar:  python crear_usuario.py tunombre --rol admin   (crea usuarios.json)
+#                     export TELEGRAM_TOKEN=...   (o ponlo en un archivo .env)
+services:
+  sistema:
+    build: .
+    restart: unless-stopped
+    environment:
+      - TELEGRAM_TOKEN=${TELEGRAM_TOKEN}
+    volumes:
+      - ./config.yaml:/app/config.yaml:ro
+      - ./modelos:/app/modelos:ro
+      - ./datos:/app/datos
+    # GPU NVIDIA (requiere nvidia-container-toolkit y onnxruntime-gpu en la imagen):
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices: [{ driver: nvidia, count: 1, capabilities: [gpu] }]
+
+  panel:
+    build: .
+    restart: unless-stopped
+    command: streamlit run panel.py --server.address 0.0.0.0 --server.port 8501 --server.headless true
+    ports:
+      - "127.0.0.1:8501:8501"     # solo local; para la red de la escuela usa un proxy con HTTPS
+    volumes:
+      - ./config.yaml:/app/config.yaml
+      - ./datos:/app/datos
+      - ./usuarios.json:/app/usuarios.json
+      - ./datos_entrenamiento:/app/datos_entrenamiento

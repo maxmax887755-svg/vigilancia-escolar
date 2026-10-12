@@ -1,0 +1,9 @@
+2026-10-11 20:07:31,677 [MainProcess/principal] AVISO: Telegram sin configurar (token y chats).
+2026-10-11 20:07:31,677 [MainProcess/principal] AVISO: MODO CALIBRACIÓN: se registran eventos pero NO se envían alertas.
+2026-10-11 20:07:31,681 [MainProcess/principal] AVISO: Detector de PRUEBA (movimiento): no usar como protección real.
+2026-10-11 20:07:31,682 [MainProcess/principal] ERROR DE CONFIGURACIÓN: Cámara 'Patio-1': falta la URL real (tiene el valor de ejemplo).
+2026-10-11 20:07:31,682 [MainProcess/principal] ERROR DE CONFIGURACIÓN: Cámara 'Pasillo-A': falta la URL real (tiene el valor de ejemplo).
+2026-10-11 20:14:22,788 [MainProcess/principal] AVISO: Telegram sin configurar (token y chats).
+2026-10-11 20:14:22,788 [MainProcess/principal] AVISO: MODO CALIBRACIÓN: se registran eventos pero NO se envían alertas.
+2026-10-11 20:14:22,793 [MainProcess/principal] AVISO: Detector de PRUEBA (movimiento): no usar como protección real.
+2026-10-11 20:14:22,831 [MainProcess/registro] Purga completada (0.00 GB en clips)

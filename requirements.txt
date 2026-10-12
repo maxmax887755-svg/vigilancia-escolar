@@ -1,0 +1,7 @@
+opencv-python
+numpy
+requests
+pyyaml
+streamlit
+pandas
+onnxruntime        # opcional: solo si usas un modelo ONNX (backend: onnx)
